@@ -1,0 +1,22 @@
+
+name: Deploy to Local Server
+
+on:
+  push:
+    branches: [ main ] # триггер: при каждом пуше в ветку main
+
+jobs:
+  deploy:
+    runs-on: self-hosted # задачу будет выполняться на моём ПК
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # скачивает обновлённый код в папку раннера
+
+      - name: Install dependencies
+        run: npm install # устанавливает express и другие модули (если есть)
+
+      - name: Restart Server
+        # если сервер уже запущен, его надо перезапустить
+        # можно просто выводить сообщение, что код обновлён
+        run: echo "Code updated on local server!"
